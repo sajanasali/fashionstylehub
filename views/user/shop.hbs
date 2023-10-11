@@ -1,0 +1,120 @@
+{{>userheader}}
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Our Shop</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Shop</p>
+            </div>
+        </div>
+    </div>
+    <!-- Shop Start -->
+    <div class="container">
+    <div class="col-lg-6 col-6 text-left" style="align-items: center;">
+     <form action="/searchProducts"> 
+    
+    <select id="category" name="category">
+      <option value="">-- Select Category --</option>
+      {{#each category}}
+        <option value="{{this._id}}">{{this.name}}</option>
+      {{/each}}
+      
+    </select>
+     <input type="text"  id="searchField" name="search"  class="form-control" placeholder="Search for products">
+    <input type="submit" value="Search">
+  </form>
+    </div>
+    </div>
+    <h1 style="text-align: center;">Products</h1>
+    
+       <div class="bg-light text-center rounded p-4">
+     
+
+   <div class="container">
+
+    
+	<div class="row" >
+		{{#each product}}
+      <div class="card p-10 m-10" style="width: 18rem;align-items: center;">
+  <img src="/images/{{this.image.[0]}}" class="card-img-top" alt="productimage" width="70px" height="150px">
+  <div class="card-body">
+    <h5 class="card-title">{{this.name}}</h5>
+    <p class="card-text">{{this.description}}</p>
+   
+    <div   style="margin-left: 20;align-items: end;">
+        <input type="hidden" id="name{{product._id}}" value="{{user.name}}">
+									<input type="hidden" id="id" value="{{this._id}}">
+   
+    </div>
+   
+  </div>
+  <a href="/productDetails/{{this._id}}" class="btn btn-primary p-10" style="align-items: center;">view details</a>
+  
+</div>
+{{/each}}
+	</div>
+   </div>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Get the current URL
+    var currentUrl = window.location.pathname;
+     console.log("url checking",currentUrl)
+    // Loop through each link in the navigation
+    $('.navbar-nav a').each(function() {
+      var linkUrl = $(this).attr('href');
+          console.log("linkurl for checking",linkUrl)
+      // Check if the link URL matches the current URL
+      if (currentUrl === linkUrl) {
+        $(this).addClass('active');
+      }
+    });
+  });
+  </script>
+
+    <script>
+       function searchProducts() {
+        console.log("hi from search")
+	const searchValue = document.getElementById('searchField').value.trim();
+	if (searchValue !== '') {
+	  fetch(`/searchProducts?query=${encodeURIComponent(searchValue)}`)
+		.then((response) => response.json())
+		.then((data) => {
+		  // Update the product list with the search results
+		  updateProductList(data);
+		})
+		.catch((error) => console.error('Error:', error));
+	}
+  }
+  </script>
+ {{>userfooter}}

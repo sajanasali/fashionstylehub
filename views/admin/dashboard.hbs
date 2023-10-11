@@ -1,0 +1,304 @@
+{{>adminheader}}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+  /* Center the header title */
+  .header {
+    text-align: center;
+  }
+
+  /* Style the header title */
+  .header h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    padding: 20px 0;
+  }
+
+  /* Add a border to the header */
+  .header {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .sales-report {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.sales-report-title {
+  text-align: center;
+}
+
+.sales-report-form {
+  display: flex;
+  align-items: center;
+}
+
+.sales-report-form label {
+  margin-right: 10px;
+}
+
+.sales-report-form input,
+.sales-report-form button {
+  padding: 5px 10px;
+}
+
+.sales-report-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+}
+
+.sales-report-button:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+}
+
+</style>
+
+
+
+  
+
+<div class="container">
+  <div class="header">
+    <h1>Welcome Dashboard</h1>
+  </div>
+  <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+    <div class="col">
+      <div class="card" style="background-color: rgb(183, 240, 240);">
+        <div class="card-body" style="text-align: center;">
+          <h2 class="card-title">Toal Users</h2>
+          <h3 class="card-text">{{users}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="background-color: rgb(194, 194, 146);">
+        <div class="card-body" style="text-align: center;">
+          <h2 class="card-title">Total Products</h2>
+          <h3 class="card-text">{{products}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card  " style="background-color: rgb(185, 246, 185);">
+        <div class="card-body" style="text-align: center;">
+          <h2 class="card-title">Total orders</h2>
+          <h3 class="card-text">{{orders}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card " style="background-color: rgb(250, 200, 200);">
+        <div class="card-body" style="text-align: center;">
+          <h2 class="card-title">Total Revenue</h3>
+            <h3 class="card-text">{{totalRevenue}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-9 offset-2 my-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 style="text-align: center;">Sales Data</h5>
+        <hr>
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="raw d-flex">
+
+    
+
+    <div class="col-3 offset-2 my-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 style="text-align: center;">Category wise Sales</h5>
+          <hr>
+          <canvas id="myChart3"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+
+<div class="sales-report">
+  <h5 class="sales-report-title">Sales Report</h5>
+  <hr>
+  <div class="sales-report-form">
+    <form action="/admin/dailysales" method="post">
+      <label for="daily">Daily sales</label>
+      <input type="date" name="daily" id="daily">
+      <button class="sales-report-button" type="submit">View</button>
+    </form>
+  </div>
+  <br>
+  <div class="sales-report-form">
+    <form action="/admin/monthlysales" method="post">
+      <label for="monthly">Monthly sales</label>
+      <input type="month" name="month" id="month">
+      <button class="sales-report-button" type="submit">View</button>
+    </form>
+  </div>
+  <br>
+  
+</div>
+<div class="sales-report">
+  <h5 class="sales-report-title">Cancel Report</h5>
+  <br>
+  <div class="sales-report-form">
+    <form action="/admin/dailycancel" method="post">
+      <label for="daily">Daily Cancels</label>
+      <input type="date" name="daily" id="daily">
+      <button class="sales-report-button" type="submit">View</button>
+    </form>
+  </div>
+  <br>
+  <div class="sales-report-form">
+    <form action="/admin/monthlycancel" method="post">
+      <label for="monthly">Monthly cancels</label>
+      <input type="month" name="month" id="month">
+      <button class="sales-report-button" type="submit">View</button>
+    </form>
+  </div>
+  <br>
+  
+</div>
+<div class="sales-report">
+  <h5 class="sales-report-title">Stock Report</h5>
+  <br>
+  <div class="sales-report-form">
+    <form action="/admin/dailystock" method="post">
+      <label for="daily">Daily stock</label>
+      <input type="date" name="daily" id="daily">
+      <button class="sales-report-button" type="submit">View</button>
+    </form>
+  </div>
+  <br>
+  
+  
+</div>
+</div>
+
+
+</div>
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+<script src="/js/piechart.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+<script>
+  const orderCounts = {{{ json orderCounts }}};
+const monthName = {{{json monthNames}}}
+const ordersNum = {{{json ordersnum}}}
+ 
+  const dates = orderCounts.map(order => order.month);
+  const counts = orderCounts.map(order => order.count);
+
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    // the data for our dataset
+    data: {
+      labels: monthName,
+      datasets: [{
+        label: 'Total orders',
+        data: ordersNum,
+        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+</script>
+
+<script>
+  const catOrderCounts = {{{ json categorysale}}};
+
+  console.log(catOrderCounts,21888888888888);
+  const catNames = catOrderCounts.map(order => order.category);
+  const catcounts = catOrderCounts.map(order => order.count);
+  const ctx3 = document.getElementById("myChart3");
+ console.log(catcounts,catNames,"catcountsss,catnamessss")
+  new Chart(ctx3, {
+    type: "pie",
+
+    data: {
+      labels:
+        catNames
+,
+      datasets: [{
+        label: 'Total Count',
+        data: catcounts,
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
+      }]
+    }
+  });
+
+</script>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/chart/chart.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<script src="/admin/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Get the current URL
+    var currentUrl = window.location.pathname;
+     console.log("url checking",currentUrl)
+    // Loop through each link in the navigation
+    $('.navbar-nav a').each(function() {
+      var linkUrl = $(this).attr('href');
+          console.log("linkurl for checking",linkUrl)
+      // Check if the link URL matches the current URL
+      if (currentUrl === linkUrl) {
+        $(this).addClass('active');
+      }
+    });
+  });
+  </script>
+
+
+{{>adminfooter}}

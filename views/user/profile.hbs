@@ -1,0 +1,77 @@
+{{>userheader}}
+  <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">MY profile</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Profile</a></p>
+                <p class="m-0 px-2">-</p>
+                
+            </div>
+        </div>
+    </div>
+<div class="container">
+     <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+                      
+                     <h3 class="mt-5 mb-5">Hello, {{userData.name}}</h3>
+                     
+                </div>
+                <div style="display: block;">
+                     <h5  class="mt-5 mb-5">My wallet Balance:{{userData.wallet}}</h5>
+                     
+                </div>
+                
+            </div>
+        </div>
+         
+        <form action="" method="" style="display: block;">
+          <div class="container">
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            
+            <div class="card mb-4">
+                
+                <div class="card-header">Account Details</div>
+                <div class="card-body ml-3 p-5">
+                    <h4 class="mb-3">Name : {{userData.name}}</h4>
+                   <input type="hidden" id="name{{userData._id}}" value="{{userData.name}}">
+									<input type="hidden" id="id" value="{{userData._id}}">
+                    <h4 class="mb-3">Email : {{userData.email}}</h4>
+                    {{!-- <h4 class="mb-3">D.O.B : {{userData.dob}}</h4> --}}
+                    {{!-- <h4 class="mb-3">Account type : {{userData.type}}</h4> --}}
+                   {{!<a href="/edit_details" class="btn btn-info mt-4" type="button">EDIT</a>}} 
+                   <div style="display: flex;padding: 5px;">
+                     <h5 style="padding-right: 25px";><a  href="/manage_address">Manage address</a></h5> 
+                   <h5 ><a  href="/changePassword">Change password</a></h5>
+                   </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div> 
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Get the current URL
+    var currentUrl = window.location.pathname;
+     console.log("url checking",currentUrl)
+    // Loop through each link in the navigation
+    $('.navbar-nav a').each(function() {
+      var linkUrl = $(this).attr('href');
+          console.log("linkurl for checking",linkUrl)
+      // Check if the link URL matches the current URL
+      if (currentUrl === linkUrl) {
+        $(this).addClass('active');
+      }
+    });
+  });
+  </script>
+    {{>userfooter}}

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>EShopper - Bootstrap Shop Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-2 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark" href="">FAQs</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Help</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Support</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-dark pl-2" href="">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a href="" class="text-decoration-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Fashion</span>HUB</h1>
+                </a>
+            </div>
+            <div class="col-lg-6 col-6 text-left">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for products">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 col-6 text-right">
+                <a href="" class="btn border">
+                    <i class="fas fa-heart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+                <a href="" class="btn border">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                    <h2 class="m-0" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" >New Styles Hub</h2>
+                   
+                </a>
+                
+            </div>
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="/home" class="nav-item nav-link">Home</a>
+                            <a href="/shop" class="nav-item nav-link">Shop</a>
+                            <a href="/my_orders" class="nav-item nav-link">Orders</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="/cart" class="dropdown-item">Shopping Cart</a>
+                                    <a href="/checkout" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="navbar-nav ml-auto py-0">
+                            <a href="/login" class="nav-item nav-link">Login</a>
+                            <a href="/signup" class="nav-item nav-link">Register</a>
+                            <a href="/logout" class="nav-item nav-link">Logout</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+     <!-- Page Header Start -->
+     <style>
+
+       
+       
+        
+        .main-container {
+          width: 100%;
+          height: 100vh;
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .check-container {
+          width: 6.25rem;
+          height: 7.5rem;
+          display: flex;
+          flex-flow: column;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .check-container .check-background {
+          width: 100%;
+          height: calc(100% - 1.25rem);
+          background: linear-gradient(to bottom right, #5de593, #41d67c);
+          box-shadow: 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset;
+          transform: scale(0.84);
+          border-radius: 50%;
+          -webkit-animation: animateContainer 0.75s ease-out forwards 0.75s;
+                  animation: animateContainer 0.75s ease-out forwards 0.75s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+        }
+        .check-container .check-background svg {
+          width: 65%;
+          transform: translateY(0.25rem);
+          stroke-dasharray: 80;
+          stroke-dashoffset: 80;
+          -webkit-animation: animateCheck 0.35s forwards 1.25s ease-out;
+                  animation: animateCheck 0.35s forwards 1.25s ease-out;
+        }
+        .check-container .check-shadow {
+          bottom: calc(-15% - 5px);
+          left: 0;
+          border-radius: 50%;
+          background: radial-gradient(closest-side, rgb(73, 218, 131), transparent);
+          -webkit-animation: animateShadow 0.75s ease-out forwards 0.75s;
+                  animation: animateShadow 0.75s ease-out forwards 0.75s;
+        }
+        
+        @-webkit-keyframes animateContainer {
+          0% {
+            opacity: 0;
+            transform: scale(0);
+            box-shadow: 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset;
+          }
+          25% {
+            opacity: 1;
+            transform: scale(0.9);
+            box-shadow: 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset;
+          }
+          43.75% {
+            transform: scale(1.15);
+            box-shadow: 0px 0px 0px 43.334px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset;
+          }
+          62.5% {
+            transform: scale(1);
+            box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 21.667px rgba(255, 255, 255, 0.25) inset;
+          }
+          81.25% {
+            box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 0px rgba(255, 255, 255, 0.25) inset;
+          }
+          100% {
+            opacity: 1;
+            box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 0px rgba(255, 255, 255, 0.25) inset;
+          }
+        }
+        
+        @keyframes animateContainer {
+          0% {
+            opacity: 0;
+            transform: scale(0);
+            box-shadow: 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset;
+          }
+          25% {
+            opacity: 1;
+            transform: scale(0.9);
+            box-shadow: 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset;
+          }
+          43.75% {
+            transform: scale(1.15);
+            box-shadow: 0px 0px 0px 43.334px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset;
+          }
+          62.5% {
+            transform: scale(1);
+            box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 21.667px rgba(255, 255, 255, 0.25) inset;
+          }
+          81.25% {
+            box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 0px rgba(255, 255, 255, 0.25) inset;
+          }
+          100% {
+            opacity: 1;
+            box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 0px rgba(255, 255, 255, 0.25) inset;
+          }
+        }
+        @-webkit-keyframes animateCheck {
+          from {
+            stroke-dashoffset: 80;
+          }
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+        @keyframes animateCheck {
+          from {
+            stroke-dashoffset: 80;
+          }
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+        @-webkit-keyframes animateShadow {
+          0% {
+            opacity: 0;
+            width: 100%;
+            height: 15%;
+          }
+          25% {
+            opacity: 0.25;
+          }
+          43.75% {
+            width: 40%;
+            height: 7%;
+            opacity: 0.35;
+          }
+          100% {
+            width: 85%;
+            height: 15%;
+            opacity: 0.25;
+          }
+        }
+        @keyframes animateShadow {
+          0% {
+            opacity: 0;
+            width: 100%;
+            height: 15%;
+          }
+          25% {
+            opacity: 0.25;
+          }
+          43.75% {
+            width: 40%;
+            height: 7%;
+            opacity: 0.35;
+          }
+          100% {
+            width: 85%;
+            height: 15%;
+            opacity: 0.25;
+          }
+        }/*# sourceMappingURL=success.css.map */
+        
+        </style>
+        
+        <body>
+        
+        
+            <div class="main-container">
+                <div class="check-container">
+                    <div class="check-background">
+                        <svg viewBox="0 0 65 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 25L27.3077 44L58.5 7" stroke="white" stroke-width="13" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="check-shadow"></div>
+        
+                </div>
+                 <div class="text" style="padding:10px;font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" >
+        
+                <h2>Order Succesfully Completed :)</h2>
+                <h4>lets take you to orders <a href="/my_orders" style="text-decoration:none;color:chocolate">Go orders</a></h4>
+            </div>
+            </div>
+            
+        </body>
+        
+        </html>
+        
+        
+        
+
+     <!-- Footer Start -->
+    {{>userfooter}}
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Document</title>
+</head>
+<body>
+     
+<div class="container">
+
+<button onclick="day()">click</button>
+<canvas id="myChart"></canvas>
+</div>
+</body>
+
+
+
+
+  
+   <script>
+ function day(){
+        async function fetchData(){
+            const response = await fetch(/admin/dayReport)
+               
+                   const data = await response.json();
+                   console.log(data)
+                    return data
+               }
+              
+    fetchData().then(data=>{
+        const date = data.chartData.map(
+            function(index){
+                return index.y
+            })
+         const sale = data.chartData.map(
+            function(index){
+                return index.a
+            })
+            console.log(date)
+            myChart.config.data.labels = date;
+            myChart.config.data.datasets[0].data = sale
+             myChart.config.data.datasets[0].label = "Today's Sale";
+            myChart.update();
+    })
+
+    }
+</script>
+<script>
+   const data = {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: 'Weekly Sales',
+        data: [18, 12, 6, 9, 12, 3, 9],
+        backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(0, 0, 0, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(0, 0, 0, 1)'
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    // config 
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+    // Instantly assign Chart.js version
+    const chartVersion = document.getElementById('chartVersion');
+    chartVersion.innerText = Chart.version;
+</script>
+
+</html>

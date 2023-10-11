@@ -1,0 +1,83 @@
+{{>adminheader}}
+    <h1 style="text-align: center;">UserList</h1>
+      <div class="container">
+
+     
+     <div class="col-12">
+    <div class="bg-light rounded h-100 p-4">
+      <h6 class="mb-4">User Table</h6>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+             
+              <th scope="col">Username</th>
+              <th scope="col">Email</th>
+              
+              <th scope="col">Block Status</th>
+              <th scope="col">Action</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {{#each userData}}
+            <tr>
+              <ul>
+                
+                <td>{{this.name}}</td>
+                <td>{{this.email}}</td>
+                
+                <td>{{this.is_blocked}}</td>
+                {{#if this.is_blocked}}
+
+                <td><a class="btn btn-success" href="/admin/unblockUser?id={{this._id}}">Unblock </a></td>
+                {{else}}
+
+                <td><a class="btn btn-danger" href="/admin/blockUser?id={{this._id}}">Block </a></td>
+                {{/if}}
+              </ul>
+
+            </tr>
+            {{/each}}
+
+          </tbody>
+        </table>
+
+        
+      </div>
+    </div>
+  </div>
+   </div>
+</div>
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Get the current URL
+    var currentUrl = window.location.pathname;
+     console.log("url checking",currentUrl)
+    // Loop through each link in the navigation
+    $('.navbar-nav a').each(function() {
+      var linkUrl = $(this).attr('href');
+          console.log("linkurl for checking",linkUrl)
+      // Check if the link URL matches the current URL
+      if (currentUrl === linkUrl) {
+        $(this).addClass('active');
+      }
+    });
+  });
+  </script>
+{{>userfooter}}

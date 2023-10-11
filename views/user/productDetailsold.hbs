@@ -1,0 +1,174 @@
+
+{{>userheader}}
+<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+     <style>
+    .zoom {
+  padding: 50px;
+ 
+  transition: transform .2s; /* Animation */
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+  .zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+          
+     </style>
+    <title>product Details</title>
+  </head>
+  <body>
+   
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images p-3">
+                            <div class="text-center p-4" > <div class="zoom"><img id="main-image" src="/images/{{proData.image.[0]}}" width="250" /></div> </div>
+                            <div class="thumbnail text-center" > <div class="zoom"><img onclick="change_image(this)" src="/images/{{proData.image.[1]}}" width="70" alt=""> <img onclick="change_image(this)" src="/images/{{proData.image.[2]}}" width="70" alt=""></div> </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i> <span class="ml-1">Back</span> </div> <i class="fa fa-shopping-cart text-muted"></i>
+                            </div>
+                            <div class="mt-4 mb-3"> 
+                                <h5 class="text-uppercase">{{proData.name}}</h5>
+                                <input name="product_name" value="{{proData.name}}" type="hidden">
+                                <div class="price d-flex flex-row align-items-center"> 
+                                    <div class="ml-2"> <small class="dis-price">${{proData.price}}</small> <span>40% OFF</span> </div>
+                                </div>
+                            </div>
+                            <p class="about">{{proData.description}}</p>
+                            <div class="sizes mt-5">
+                                <h6 class="text-uppercase">Size</h6> <label class="radio"> <input type="radio" name="size" value="S" checked> <span>S</span> </label> <label class="radio"> <input type="radio" name="size" value="M"> <span>M</span> </label> <label class="radio"> <input type="radio" name="size" value="L"> <span>L</span> </label> <label class="radio"> <input type="radio" name="size" value="XL"> <span>XL</span> </label> <label class="radio"> <input type="radio" name="size" value="XXL"> <span>XXL</span> </label>
+                            </div>
+                           {{#if proData.quantity}}
+						<div class="bg-dark text-white p-15 rounded" style="width: fit-content;">
+							<p class="my-4 mx-2">in stock</p>
+						</div>
+						{{else}}
+						<div class="bg-dark text-white p-15 rounded" style="width: fit-content;">
+							<p class="my-4 mx-2">Out of stock</p>
+						</div>
+						{{/if}}
+                       
+                           <div class="flex-w flex-r-m p-b-10">
+								<div class="size-204 flex-w flex-m respon6-next">
+									{{#if userData}}
+
+									{{#if proData.quantity}}
+									{{#if proData.isOnCart}}
+									<a href="/cart?id={{userData._id}}"
+										class="mt-5 flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 "
+										style="text-decoration: none;">Go to cart</a>
+									{{else}}
+									<span id="cart_btn">
+										<button  id="add_to_cart_btn"    onclick="addToCartBtn('{{proData._id}}')" 
+											class="mt-5 flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" >
+											Add to cart
+										</button>
+									</span>
+									{{/if}}
+									{{else}}
+									<div >
+										<button onclick="outOfStock('{{proData._id}}')" id="add_to_cart_btn"
+											class="mt-5 flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 ">
+											Add to cart
+										</button>
+									</div>
+									{{/if}}
+
+									{{else}}
+
+									{{#if proData.quantity}}
+									<span   id="cart_btn">
+										<button  id="add_to_cart_btn"
+											class="mt-5 flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 ">
+											<a style="text-decoration: none;" href="/login">Add to cart</a>
+											
+										</button>
+									</span>
+									{{else}}
+									<div onclick="outOfStock()">
+										<button disabled id="add_to_cart_btn"
+											class="mt-5 flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 ">
+											Add to cart
+										</button>
+									</div>
+									{{/if}}
+
+									{{/if}}
+								</div>
+								
+							</div>
+
+                           
+						</div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+<script>
+
+ const addToCartBtn = async (prId) => {
+        const productid = document.getElementById('add_to_cart_btn').value;
+        const productName = document.getElementsByName('product_name')[0].value;
+
+        const response = await fetch(`/add_to_cart?id=${prId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        let data = await response.json();
+        console.log(data, 'from add to cart btn....');
+
+        document.getElementById('cart_btn').innerHTML =
+            `<a href="/cart?id={{userData._id}}"> <button class="btn btn-fill-out btn-addtocart" type="button"><i class="icon-basket-loaded"></i> Go to cart</button>`;
+
+        if (data) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Awww 🥳!',
+                text: `${productName} added to Cart!`,
+                confirmButtonText: 'OK',
+            });
+			
+        }
+		window.location.reload()
+    };
+
+  const outOfStock = () => {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Out of Stock',
+            text: 'This item is currently out of stock.',
+            confirmButtonText: 'OK',
+        });
+    };
+	</script>
+
+    
+  </body>
+</html>

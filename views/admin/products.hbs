@@ -1,0 +1,138 @@
+{{>adminheader}}
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+  <body>
+    <style>
+      .body{
+        padding: 30px;
+      }
+    </style>
+   
+     
+
+     <div class="container pt-4 px-4">
+
+
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        
+       <div class="col-lg-6 col-6 text-left">
+                <form action="searchingProducts" method="get">
+                    <div class="input-group">
+                        <input type="text"  id="searchField" name="search"  class="form-control" placeholder="Search for products">
+                        <button  type="submit"> search    </button>
+                    </div>
+                    
+                </form>
+            </div>
+    <div class="col-lg-6 col-6 text-left" style="align-items: center;">
+     <form action="catadSearch"> 
+    
+    <select id="category" name="category">
+      <option value="">-- Select Category --</option>
+      {{#each categories}}
+        <option value="{{this._id}}">{{this.name}}</option>
+      {{/each}}
+      
+    </select>
+    <input type="submit" value="Search">
+  </form>
+    </div>
+       
+        <a class='btn btn-success ml-auto mt-5' href="/admin/product" type="submit">Add Product</a>
+      </div>
+      
+      <div class="table-responsive">
+        <table class="table text-start align-middle table-bordered table-hover mb-0" id="productTable">
+          <thead>
+            <tr class="text-dark text-center">
+              
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Image</th>
+             
+              <th scope="col">Brand</th>
+              <th scope="col">Price</th>
+               <th scope="col">Quantity</th>
+              <th scope="col">Blocked</th>
+              <th scope="col">Action</th>
+
+            </tr>
+          </thead>
+          {{#each product}} 
+          <tbody>
+            <tr>
+              
+              <td>{{this.name}}</td>
+              <td>{{this.description}}</td>
+              <td><img style="width: 100px;height:100px"  src="/images/{{this.image.[0]}}" alt="Hi"></td>
+             
+              <td>{{this.brand}}</td>
+              <td>{{this.price}}</td>
+             <td>{{this.quantity}}</td>
+              <td>{{this.is_blocked}}</td>
+              <td>
+                <input type="hidden" id="name{{this._id}}" value="{{this.name}}">
+									<input type="hidden" id="id" value="{{this._id}}">
+                <a class="btn btn-outline-primary btn-sm px-2 py-2 m-1" style="align-items: center;"
+                  href="/admin/editProduct/{{this._id}}">Edit</a>
+                 
+                {{#if this.unlist}}
+                <a class="btn btn-outline-primary btn-sm px-2 py-2 m-1"  href="/admin/list?id={{this._id}}">list </a>
+                {{else}}
+                
+                <a class="btn btn-outline-primary btn-sm px-2 py-2 m-1" href="/admin/unlist?id={{this._id}}">unlist
+</a>
+                {{/if}}
+
+              </td>
+            </tr>
+          </tbody>
+          {{/each}}
+        </table>
+
+      </div>
+     
+     </body>
+     </html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+<script>
+
+  $(document).ready( function () {
+    console.log('DataTable initialized');
+   const table= $('#productTable').DataTable();
+   "pageLength": 3
+} );
+
+
+  
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Get the current URL
+    var currentUrl = window.location.pathname;
+     console.log("url checking",currentUrl)
+    // Loop through each link in the navigation
+    $('.navbar-nav a').each(function() {
+      var linkUrl = $(this).attr('href');
+          console.log("linkurl for checking",linkUrl)
+      // Check if the link URL matches the current URL
+      if (currentUrl === linkUrl) {
+        $(this).addClass('active');
+      }
+    });
+  });
+  </script>
+
+
+
+ </script>
+  
+
+ 
+
+   
+ 

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin DASH </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    {{!--
+    <link href="img/favicon.ico" rel="icon"> --}}
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    {{!--
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" /> --}}
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/admin/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/admin/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/adminCss/addproduct.css">
+</head>
+
+<body>
+   <nav class="navbar navbar-dark bg-primary">
+       
+      
+            <a class="navbar-brand" href="#">Fashion HUB</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/admin/home">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/addCategory">Add category</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/productView">product</a>
+                </li>
+                
+              </ul>
+            </div>
+          
+          
+      </nav>
+                
+               
+<style>
+  label {
+    font-weight: 600;
+  }
+
+  .btn-primary {
+    width: 100%;
+    margin-top: 1em;
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 5px;
+    text-align: center;
+  }
+</style>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="/css/adminCss/addproduct.css" type="text/css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+
+<div class="content">
+  <!-- Navbar Start -->
+ 
+  <div class="container" style="margin: 150;">
+    <div class="row ">
+      <div class="col-lg-3 col-md-3 login-box"></div>
+      <div class="col-lg-6 col-md-8 login-box">
+
+        <h2><span class="px-2">ADD PRODUCT</span></h2>
+        {{#if message}}
+        <div class="alert alert-success mt-3">
+          {{message}}
+        </div>
+        {{/if}}
+        {{#if message1}}
+        <div class="alert alert-danger mt-3">
+          {{message1}}
+        </div>
+        {{/if}}
+
+        <form action="" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="name">Product Name</label>
+            <input type="text" id="name" name="name" class="form-control">
+            {{#if errors.name}}
+            <div class="error-message">{{errors.name}}</div>
+            {{/if}}
+          </div>
+
+          <div class="form-group">
+            <label for="description">Product Description</label>
+            <div class="form-group">
+              <input placeholder="description" id="description" name="description" class="form-control" rows="3"
+                value="{{Product.description}}"></input>
+            </div> {{!-- <input type="text" id="name" maxlength="4  0" name="description"> --}}
+            {{#if errors.description}}
+            <div class="error-message">{{errors.description}}</div>
+            {{/if}}
+          </div>
+
+          <div class="form-group">
+            <label for="name">image</label>
+            <input type="file" id="name" name="image" class="form-control" multiple>
+            {{#if errors.images}}
+            <div class="error-message">{{errors.images}}</div>
+            {{/if}}
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+  
+            <select id="category" name="category" class="form-control">
+              {{#each categorydata}}
+              <option value={{this._id}}>{{this.name}}</option>
+              {{/each}}
+            </select>
+            
+            {{#if errors.categorydata}}
+            <div class="error-message">{{errors.categorydata}}</div>
+            {{/if}}
+          </div>
+
+          <div class="form-group">
+            <label for="brand">Brand</label>
+            <input type="text" id="quantity" name="brand" class="form-control">
+            {{#if errors.brand}}
+            <div class="error-message">{{errors.brand}}</div>
+            {{/if}}
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">₹</span>
+              </div>
+              <input type="number" id="price" name="price" min="0" step="0.01" class="form-control">
+
+            </div>
+            {{#if errors.price}}
+            <div class="error-message">{{errors.price}}</div>
+            {{/if}}
+          </div>
+
+          
+          {{!-- <div class="form-group">
+            <label for="offer">Offer</label>
+            <input type="number" id="offer" name="offer" class="form-control">
+          </div> --}}
+
+
+          <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/chart/chart.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+
+<!-- Template Javascript -->
+<script src="/admin/js/main.js"></script>
+
+
+
+
+<script>
+
+
+
+
+  function previewImage(event) {
+    const preview = document.querySelector('.image-preview');
+    preview.innerHTML = '';
+    const file = event.target.files[0];  //s
+    const reader = new FileReader();
+    reader.onload = function (event) {
+
+
+      const img = new Image();
+      img.src = event.target.result;
+      img.style.width = '100%';
+      img.style.height = '100%';
+      preview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  }
+
+</script>
+
+
+
+
+<script>
+
+
+  //const uploadForm = document.getElementById('uploadForm');
+  const submitButton = document.getElementById('submit');
+  const imageInput = document.getElementById('image');
+
+  submitButton.addEventListener('click', function (event) {
+    if (!validateImage()) {
+      event.preventDefault();
+    }
+  });
+
+  function validateImage() {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!allowedExtensions.exec(imageInput.value)) {
+      alert('Invalid file type.');
+      imageInput.value = '';
+      return false;
+    }
+    return
+</script>
+
+
