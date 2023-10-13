@@ -41,6 +41,7 @@ user_route.get('/otpverification',userController.getotp);
 user_route.post('/otpverification', userController.verifyOtp);
 //session home
 user_route.get('/home',userController.home)
+user_route.get('/',userController.home)
 user_route.get('/logout',userController.logout)
 
 
