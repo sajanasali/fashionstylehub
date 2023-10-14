@@ -82,58 +82,40 @@ const addProduct = async (req, res) => {
         });
         const categorydata = await category.find();
         const productdata = await Product.findOne({ description: productdescription });
-        const product = new Product({
-                        name: req.body.name,
-                        description: req.body.description,
-                        image: images,
-                        brand: req.body.brand,
-                        price: req.body.price,
-                        category: req.body.category,
-                        quantity:req.body.quantity,
-                        // offer: req.body.offer,
-                        // offerprice: offerprice, // Use the calculated offerprice variable here
-                        is_blocked: false,
-                    });
-                   
-                    const productsdata = await product.save();
-                    console.log("productdata",productsdata)
-                    //res.send("successfully")
-                   // res.redirect('/admin/products')
-        res.render('addproduct', { message: 'Product added successfully', product: productsdata ,categorydata });
         // const offe rprice = (req.body.price) - (req.body.price) * (req.body.offer) / 100;
 
         const errors = {};
-        // if (Object.values(req.body).some(value => !value.trim() || value.trim().length === 0)) {
-        //     errors.name = 'Please provide a product name.';
-        //     errors.description = 'Please provide a product description.';
-        //     errors.images = 'Please provide image'
-        //     errors.category = 'please choose one category'
-        //     errors.brand = 'Please provide a brand name'
-        //     errors.price = 'please provide price'
-        //     errors.quantity = 'Please provide Quantity'
-        //     res.render('addproduct', { message: "", errors, categorydata })
-        // } else {
+        if (Object.values(req.body).some(value => !value.trim() || value.trim().length === 0)) {
+            errors.name = 'Please provide a product name.';
+            errors.description = 'Please provide a product description.';
+            errors.images = 'Please provide image'
+            errors.category = 'please choose one category'
+            errors.brand = 'Please provide a brand name'
+            errors.price = 'please provide price'
+            errors.quantity = 'Please provide Quantity'
+            res.render('addProduct', { message: "", errors, categorydata })
+        } else {
 
-        //     if (productdata) {
-        //         res.render('addproduct', { message1: "Product already exists" });
-        //     } else {
-        //         const product = new Product({
-        //             name: req.body.name,
-        //             description: req.body.description,
-        //             image: images,
-        //             brand: req.body.brand,
-        //             price: req.body.price,
-        //             category: req.body.category,
-        //             quantity:req.body.quantity,
-        //             // offer: req.body.offer,
-        //             // offerprice: offerprice, // Use the calculated offerprice variable here
-        //             is_blocked: false,
-        //         });
+            if (productdata) {
+                res.render('addProduct', { message1: "Product already exists" });
+            } else {
+                const product = new Product({
+                    name: req.body.name,
+                    description: req.body.description,
+                    image: images,
+                    brand: req.body.brand,
+                    price: req.body.price,
+                    category: req.body.category,
+                    quantity:req.body.quantity,
+                    // offer: req.body.offer,
+                    // offerprice: offerprice, // Use the calculated offerprice variable here
+                    is_blocked: false,
+                });
                
-        //         const productdata = await product.save();
-          //      res.render('addproduct', { message: 'Product added successfully', product: productdata ,categorydata });
-        //     }
-        // }
+                const productdata = await product.save();
+                res.render('addProduct', { message: 'Product added successfully', product: productdata ,categorydata });
+            }
+        }
     } catch (error) {
         console.log(error.message);
     }
