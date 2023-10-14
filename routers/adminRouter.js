@@ -13,11 +13,11 @@ const path = require('path')
 
 const config=require('../config/config')
 const session=require("express-session");
-admin_route.use(express.json());
+admin_route.use(express.json({limit:"50mb"}));
 admin_route.use(express.urlencoded({extended:true}))
 admin_route.use('/images', express.static('/public'));
 admin_route.set("view engine", "hbs");
-admin_route.set('views','./views/admin');
+admin_route.set('views',path.join(__dirname,'../views/admin'));
 
 admin_route.use( express.static(path.join(__dirname, '../public')))
 
@@ -35,7 +35,7 @@ const storage = multer.diskStorage({
         cb(null, name);
     }
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage,limits:{fileSize:50*1024*1024} });
 
 
 
