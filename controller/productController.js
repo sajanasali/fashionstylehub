@@ -133,20 +133,20 @@ catch(err){
 }    
         
 }
-const deleteproduct=async(req,res)=>{
+// const deleteproduct=async(req,res)=>{
 
-    try{
+//     try{
         
-         const id=req.query.id;
-         await Product.findByIdAndDelete(id)
-         res.redirect('/admin/productpage')
+//          const id=req.query.id;
+//          await Product.findByIdAndDelete(id)
+//          res.redirect('/admin/productpage')
 
-    }
-    catch(err){
+//     }
+//     catch(err){
 
-        console.log(err)
-    }
-}
+//         console.log(err)
+//     }
+// }
 const getEditproduct=async(req,res)=>{
     try{
         const id = req.params.id;
@@ -266,6 +266,6 @@ module.exports={
     getEditproduct,
     productUpdate,
     productImage,
-    productImageuser,
-    deleteproduct
+    productImageuser
+    
 }
