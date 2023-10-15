@@ -51,13 +51,13 @@ const addtocart=async(req,res)=>{
 
 const cartLoad = async (req, res) => {
   try {
-    const userId = req.query.id
+    //const userId = req.query.id
     //console.log(userId);
-    const user1 = req.session.userdata
+    const user1 = req.session?.userdata
     const userData = await User.findById({ _id: user1._id })
 
-    const user = await User.findOne({ _id: userId }).populate('cart.product').lean()
-    const cart = user.cart; // Get the 'cart' array from the user document
+    const user = await User.findOne({ _id: user1._id }).populate('cart.product').lean()
+    const cart = user?.cart; // Get the 'cart' array from the user document
 
     console.log(cart, 'cartttt......................')
 
@@ -75,6 +75,7 @@ const cartLoad = async (req, res) => {
     }
   } catch (error) {
     console.log(error.message)
+    console.log("cartcatch")
   }
 }
     

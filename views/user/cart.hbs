@@ -78,13 +78,10 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="" class="btn border">
-                    <i class="fas fa-heart text-primary"></i>
-                    <span class="badge">0</span>
-                </a>
+                
                 <a href="" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge">{{cart.length}}</span>
                 </a>
             </div>
         </div>
@@ -112,21 +109,14 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="/home" class="nav-item nav-link">Home</a>
                             <a href="/shop" class="nav-item nav-link">Shop</a>
-                            <a href="/orders" class="nav-item nav-link">orders</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="/cart" class="dropdown-item">Shopping Cart</a>
-                                    <a href="/checkout" class="dropdown-item">Checkout</a>
-                                </div>
-                            </div>
+                            <a href="/my_orders" class="nav-item nav-link">orders</a>
+                            <a href="/profile" class="nav-item nav-link">profile</a>
                             
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="/login" class="nav-item nav-link">Login</a>
-                            <a href="/signup" class="nav-item nav-link">Register</a>
+                            
                             <a href="/logout" class="nav-item nav-link">Logout</a>
                         </div>
                     </div>

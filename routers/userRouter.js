@@ -10,6 +10,7 @@ const profileController=require('../controller/profileController')
 const checkoutController=require("../controller/checkoutController")
 const orderController=require("../controller/orderController")
 const nocache = require("nocache");
+const counts=require('../middleware/counts')
 
 
 const productController=require("../controller/productController")
@@ -26,7 +27,7 @@ user_route.use(session({secret:config.sessionSecret,
     saveUninitialized:true}));
 user_route.set("view engine", "hbs");
 user_route.set('views','./views/user');
-
+user_route.use(counts.cartnum)
 
 //registration
 user_route.get('/signUp',userController.loadRegister)
@@ -53,7 +54,7 @@ user_route.get('/searchProducts',userController.searchProducts)
 user_route.get('/imageUser',productController.productImageuser)
 
 //cart
-user_route.get('/cart',cartController.cartLoad)
+user_route.get('/cart',auth.isLogin,cartController.cartLoad)
 user_route.get('/add_to_cart',auth.logedin,cartController.addtocart)
 user_route.get('/remove',auth.isLogin,cartController.removeCart)
 user_route.post('/cart_updation',auth.logedin,cartController.updateCart)

@@ -1,14 +1,15 @@
 const User = require('../models/userModel');
 const isLogin = async (req, res, next) => {
   try {
-    if (req.session.userdata) {
-     
-    } else {
-      res.redirect('/')
-    }
+   
+    if (!req.session?.userdata) {
+      console.log("userauth ")
+      res.redirect('/login')
+    } 
 
   } catch (error) {
     console.log(error.message);
+    console.log("catch")
   }
   finally{
     next()
@@ -16,13 +17,14 @@ const isLogin = async (req, res, next) => {
 }
 const isLogout = async (req, res, next) => {
   try {
-    if (req.session.userdata) {
+    if (req.session?.userdata) {
      
     } else {
       res.redirect('/home')
     }
   } catch (error) {
     console.log(error.message);
+    
   }
   finally{
     next()

@@ -153,6 +153,7 @@ const placeOrder=async(req,res)=>{
      let saveOrder = async () => {
        console.log(req.body, "bodyyyyyy")
        if (req.body.couponData) {
+        console.log("payment checking")
          const order = new Order({
            userId: userId,
            product: productDet,
