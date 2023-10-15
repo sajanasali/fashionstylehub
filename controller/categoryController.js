@@ -52,7 +52,7 @@ const insertCategory = async (req, res) => {
                     description:req.body.description
                     })
                     const categorydata = await category.save()
-                    res.render('addCategory', { message: 'Category added successfully', categorydata: categorydata })
+                    res.redirect('category')
                 }
             }
         }

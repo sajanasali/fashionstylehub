@@ -44,6 +44,7 @@ const upload = multer({ storage: storage,limits:{fileSize:50*1024*1024} });
 admin_route.get('/login',adminController.loginLoad )
 admin_route.post('/login',adminController.loginVerify)
 admin_route.get('/dashboard',adminController.dashBoard)
+admin_route.get('/',adminController.dashBoard)
 admin_route.get('/logout',adminController.logout)
 //category
 admin_route.get('/addcategory',categoryController.getAddcategory)

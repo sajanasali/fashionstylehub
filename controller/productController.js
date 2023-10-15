@@ -113,7 +113,7 @@ const addProduct = async (req, res) => {
                 });
                
                 const productdata = await product.save();
-                res.render('addProduct', { message: 'Product added successfully', product: productdata ,categorydata });
+                res.redirect('productpage');
             }
         }
     } catch (error) {
