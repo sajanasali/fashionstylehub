@@ -79,7 +79,7 @@ const loadRegister = async (req, res) => {
         console.log(existUser, 911);
         if (existUser == null) {
           sendMail(name, email)
-            res.redirect('/otpverification')
+            res.redirect('/otpVerification')
         } else {
             if (existUser.email == email) {
                 res.render('signUp', { message: "User already Exits" })
@@ -180,7 +180,7 @@ const verifyOtp = async (req, res) => {
           const userData = await user.save();
           //console.log(userData);
           
-          res.render('login', { message: "Registration successful" });
+          res.redirect('login');
       } else {
           res.render('otpVerification', { message: "Invalid OTP" });
       }
