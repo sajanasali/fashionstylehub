@@ -133,6 +133,20 @@ catch(err){
 }    
         
 }
+const deleteproduct=async(req,res)=>{
+
+    try{
+        
+         const id=req.query.id;
+         await Product.findByIdAndDelete(id)
+         res.redirect('/admin/productpage')
+
+    }
+    catch(err){
+
+        console.log(err)
+    }
+}
 const getEditproduct=async(req,res)=>{
     try{
         const id = req.params.id;
@@ -252,5 +266,6 @@ module.exports={
     getEditproduct,
     productUpdate,
     productImage,
-    productImageuser
+    productImageuser,
+    deleteproduct
 }

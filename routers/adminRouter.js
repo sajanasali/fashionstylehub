@@ -69,6 +69,7 @@ admin_route.get('/product',productController.getaddProduct);
  //list or unlist product
  admin_route.get('/unlist',adminController.unlistProduct)
  admin_route.get('/list',adminController.listProduct)
+ admin_route.get('/deleteproduct',productController.deleteproduct)
 
 //block or unblock
 admin_route.get('/userlist',adminController.userList)
