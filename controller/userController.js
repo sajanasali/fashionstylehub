@@ -155,7 +155,7 @@ const loadRegister = async (req, res) => {
   
 const getotp = (req, res) => {
   try {
-      res.render('otpverification');
+      res.render('otpVerification');
   } catch (error) {
       console.log(error.message);
   }
@@ -182,7 +182,7 @@ const verifyOtp = async (req, res) => {
           
           res.render('login', { message: "Registration successful" });
       } else {
-          res.render('otpverification', { message: "Invalid OTP" });
+          res.render('otpVerification', { message: "Invalid OTP" });
       }
   } catch (error) {
       console.log(error.message);
