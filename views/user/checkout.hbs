@@ -304,7 +304,7 @@
                 </span>
               </li>
               <li class="list-group-item d-flex justify-content-between">
-                <span>Total (INR)</span>
+                <span name="total">Total (INR)</span>
                 {{!-- <span id="new_sub_total">
                   <span id="total">₹ {{subTotal}}</span>
                 </span> --}}
@@ -387,7 +387,7 @@
     const placeOrder = () => {
       if (paymentMethod === 'cash-on-delivery') {
         Cod()
-      } else if (paymentMethod === "razorpay") {
+      } else if (paymentMethod === 'razorpay') {
         online()
       } else if (paymentMethod === 'wallet') {
         useWallet()
@@ -410,25 +410,7 @@
         alertify.success('you dont have sufficient balance in ur wallet choose another payment method')
       }
     }
-    const online = () => {
-      subTotal = Number(document.getElementsByName('subTotal')[0].value)
-      var options = {
-        "key": "rzp_test_9ImU45oZDtopLe", // Enter the Key ID generated from the Dashboard
-        "amount": subTotal * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-        "currency": "INR",
-
-        /*"name": "Acme Corp", //your business name
-        "description": "Test Transaction",
-        "image": "https://example.com/your_logo",*/
-
-        "order_id":undefined, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        "handler": function (response) {
-          Cod()
-        },
-      };
-      var rzp1 = new Razorpay(options);
-      rzp1.open();
-    }
+     
 
     const Cod = async () => {
       const selectAddress = document.querySelector('#selectedAddress').value
@@ -458,7 +440,27 @@
       }
     }
 
+const online = () => {
+  
+      subTotal = Number(document.getElementsByName('subTotal')[0].value)
+     
+      var options = {
+        "key": "rzp_test_9ImU45oZDtopLe", // Enter the Key ID generated from the Dashboard
+        "amount": subTotal * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
 
+        
+
+        "order_id": undefined, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "handler": function (response) {
+          Cod()
+        },
+      };
+      
+      var rzp1 = new Razorpay(options);
+      rzp1.open();
+       console.log("online payment testing")
+    }
     
 
 

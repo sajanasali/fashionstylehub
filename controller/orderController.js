@@ -24,7 +24,7 @@ const myOrders = async (req, res) => {
 
         // console.log(userData, "From orderDetails")
         const orders = await Order.find({ userId }).sort({ date: -1 }).skip(skip).limit(PAGE_SIZE);
-
+         const couponData=orders.coupon;
 
         const formattedOrders = orders.map(order => {
             const formattedDate = moment(order.date).format('MMMM ,D,YYYY');
@@ -39,6 +39,7 @@ const myOrders = async (req, res) => {
             currentPage: page,
             totalPages: totalPages,
             itemsPerPage: PAGE_SIZE,
+            couponData
         })
     } catch (error) {
         console.log(error.message)
@@ -75,9 +76,12 @@ const orderDetails = async (req, res) => {
 
         const myOrderDetails = await Order.findById(orderId);
         const orderedProDet = myOrderDetails.product;
+        const couponData=myOrderDetails.coupon;
+         console.log("coupon data",couponData)
+        const discountAmt=myOrderDetails.discountAmt;
         const addressId = myOrderDetails.address;
         const address = await Address.findById(addressId)
-        res.render('order_Details', { myOrderDetails, orderedProDet, userData, address });
+        res.render('order_Details', { myOrderDetails, orderedProDet, userData, address,couponData,discountAmt });
 
     } catch (error) {
         console.log(error.message)
@@ -190,6 +194,16 @@ const orderCancel = async (req, res) => {
          const updateTotalAmount = currentBalance + refundAmount
          console.log(updateTotalAmount, 146666);
          if (paymentMethod === 'wallet'){
+
+         
+            const updatewalletAmount = await User.findByIdAndUpdate(
+
+                userData._id,
+                { $set: { wallet: updateTotalAmount } },
+                { new: true })
+
+         }
+         if (paymentMethod === 'razorpay'){
 
          
             const updatewalletAmount = await User.findByIdAndUpdate(

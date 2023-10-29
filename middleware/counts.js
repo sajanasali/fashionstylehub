@@ -4,7 +4,7 @@ const userModel = require("../models/userModel")
 const cartnum=async(req,res,next)=>{
 
 try{
-    console.log("middleware starting")
+    //console.log("middleware starting")
     const user1 = req.session?.userdata
       if(user1){
         

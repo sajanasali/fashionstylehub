@@ -142,6 +142,7 @@
     <form action="/admin/dailysales" method="post">
       <label for="daily">Daily sales</label>
       <input type="date" name="daily" id="daily">
+      <p id="date-error" style="color: red; display: none;">Please enter a valid date.</p>
       <button class="sales-report-button" type="submit">View</button>
     </form>
   </div>
@@ -299,6 +300,23 @@ const ordersNum = {{{json ordersnum}}}
     });
   });
   </script>
+ 
+ <script>
+function validateDate() {
+  console.log("date checking")
+  const selectedDate = new Date(document.getElementById("daily").value);
+  const currentDate = new Date();
 
+  if (selectedDate > currentDate) {
+    // Show the error message
+    document.getElementById("date-error").style.display = "block";
+    return false; // Prevent form submission
+  } else {
+   
+    document.getElementById("date-error").style.display = "none";
+    return true; // Allow form submission
+  }
+}
+</script>
 
 {{>adminfooter}}

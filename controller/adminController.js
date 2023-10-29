@@ -431,7 +431,7 @@ const getOrder = async (req, res) => {
       })
       // console.log(ordersData, 1234);
       res.render("orders", {
-          ordersData: orders,
+          ordersData: ordersData,
           currentPage: page,
           totalPages: totalPages,
           itemsPerPage: PAGE_SIZE,

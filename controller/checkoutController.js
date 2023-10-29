@@ -126,8 +126,9 @@ const placeOrder=async(req,res)=>{
     console.log("payment method" + payMethod)
 
     const userDataa = await User.findOne({ _id: userId }).populate("cart.product")
+    console.log("razorpay error")
     const cartPro = userDataa.cart
-
+        
     let subTotal = 0
 
     cartPro.forEach((val) => {
@@ -149,7 +150,7 @@ const placeOrder=async(req,res)=>{
     const ordeId = result + id;
 
      /// order saving function
-     console.log(req.session.couponData, "PlaceOrder CouponDataaaa")
+     console.log(req.session?.couponData, "PlaceOrder CouponDataaaa")
      let saveOrder = async () => {
        console.log(req.body, "bodyyyyyy")
        if (req.body.couponData) {
@@ -285,6 +286,7 @@ const validateCoupon = async (req, res) => {
         const discnt = Number(discount);
         const discountAmt = (subTotal * discnt) / 100;
         const newTotal = subTotal - discountAmt;
+        console.log("new total",newTotal)
 
         const user = User.findById(userId);
 
